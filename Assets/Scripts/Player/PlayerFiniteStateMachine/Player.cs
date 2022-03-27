@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
         private set => states = value;
     }
 
+    [Header("UI")]
     [SerializeField] private ComboUI comboUI;
 
     public ComboUI ComboUI
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; }
     public PlayerStateMachine StateMachine { get; private set; }
     public SkillInventory SkillInventory { get; private set; }
-    
+
     private ComboInput  ComboInput => _comboInput ? _comboInput : Core.GetCoreComponent(ref _comboInput);
     private ComboInput _comboInput;
         
@@ -82,7 +83,7 @@ public class Player : MonoBehaviour
     {
         Core.LogicUpdate();
         StateMachine.CurrentState.LogicUpdate();
-        ComboInput.LogicUpdate();
+        // ComboInput.LogicUpdate();
         
         // --偵錯用--
         // Debug.Log(StateMachine.CurrentState);

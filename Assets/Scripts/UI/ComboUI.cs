@@ -30,9 +30,4 @@ public class ComboUI : MonoBehaviour
         ComboThirdAnimator = comboInputThird.GetComponent<Animator>();
         ComboFourthAnimator = comboInputFourth.GetComponent<Animator>();
     }
-
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,9 +9,15 @@ public class ComboInput : CoreComponent
     protected override void Awake()
     {
         base.Awake();
-        _player = GetComponentInParent<Player>();
-        _castState = _player.CastState;
+        _player = transform.parent.transform.parent.GetComponentInChildren<Player>();
+        // _castState = _player.CastState;
         _castInput = false;
+        _inputCheck = false;
+    }
+
+    private void Start()
+    {
+        _castState = _player.CastState;
     }
 
     private Player _player;
@@ -19,6 +26,7 @@ public class ComboInput : CoreComponent
     private bool _castInput;
     private float _startTime;
     private Skill _targetSkill;
+    private bool _inputCheck;
     
     #region w/ Combo Input
     //連擊輸入相關
@@ -110,6 +118,16 @@ public class ComboInput : CoreComponent
         }
     }
 
+    private void ResetComboAndAnimation()
+    {
+        _currentComboInputs.Clear();
+        _player.ComboUI.ComboFirstAnimator.Play("TapEmpty");
+        _player.ComboUI.ComboSecondAnimator.Play("TapEmpty");
+        _player.ComboUI.ComboThirdAnimator.Play("TapEmpty");
+        _player.ComboUI.ComboFourthAnimator.Play("TapEmpty");
+        _player.ComboUI.TimeSlider.value = 0;// 時間條起始值
+    }
+    
     #endregion
 
     #region w/ State Workflow
@@ -119,44 +137,44 @@ public class ComboInput : CoreComponent
         base.LogicUpdate();
 
         _castInput = _player.InputHandler.CastInput;
-        if(!_castInput) return;// 若按下施法按鍵，才會繼續執行以下判斷
+        if (_castInput && _inputCheck == false)// 只執行一次，進入檢測
+        {
+            _inputCheck = true;
+            _castInput = false;
+            _player.InputHandler.UseCastInput();// 設定使用過施法按鍵
+            _startTime = Time.time;// 開始時間
+            // Combo UI
+            _player.ComboUI.TimeSlider.value = 0;// 時間條起始值
+            _player.ComboUI.TimeSlider.maxValue = _player.PlayerData.checkInputTime;// 時間條最大值
+            // 狀況判斷
+            _isCorrect = false;
+            _shouldReset = false;
+            _shouldCheck = true;
+        }
+        if(!_inputCheck) return;// 因按下施法按鍵，而進入檢測，才會繼續執行以下判斷
         
-        _player.InputHandler.UseCastInput();// 設定使用過施法按鍵
-        _startTime = Time.time;
-        
-        
-        // Combo UI
-        _player.ComboUI.gameObject.SetActive(true);
-        _player.ComboUI.TimeSlider.maxValue = _player.PlayerData.checkInputTime;// 時間條最大值
-        _player.ComboUI.TimeSlider.value = 0;// 時間條起始值
-        
-        _currentComboInputs.Clear();// 清空 List
-        _isCorrect = false;
-        _shouldReset = false;
-        _shouldCheck = true;
+        Debug.Log("Hello");
 
+        // Combo 輸入
         _comboFirstInput = _player.InputHandler.ComboFirstInput;
         _comboSecondInput = _player.InputHandler.ComboSecondInput;
         _comboThirdInput = _player.InputHandler.ComboThirdInput;
         _comboFourthInput = _player.InputHandler.ComboFourthInput;
 
         _player.ComboUI.TimeSlider.value = Time.time - _startTime;// 時間值
-
+        
         if (!_isCorrect)// 若還沒輸入對，繼續判斷輸入
         {
             CheckComboInput();
-            // if (!IsAbilityDone)// 避免 UI 結束時( inactive )，仍試圖播放動畫
-            // {
-            //     CheckAnimation(_currentComboInputs.Count);
-            // }
+            CheckAnimation(_currentComboInputs.Count);
         }
 
         // --- 退出 ---
         if (!_isCorrect && (_castInput || Time.time >= _startTime + _player.PlayerData.checkInputTime))// 仍不符合 and (取消施放 or 超過時間)
         {
             _player.InputHandler.UseCastInput();
-            // 結束 InSpell
-            // IsAbilityDone = true;
+            _inputCheck = false;
+            ResetComboAndAnimation();
         }
         // --- 檢查 ---
         else if (!_isCorrect && _shouldCheck && _currentComboInputs.Count == _comboInputMaxSize)// 輸入符合 => _isCorrect = true，_shouldCheck = false (只執行一次)
@@ -168,7 +186,7 @@ public class ComboInput : CoreComponent
                     _targetSkill = t;
                     _isCorrect = true;
                     _endTime = Time.time;
-                    // break;
+                    break;
                 }
             }
             _shouldCheck = false;
@@ -177,11 +195,14 @@ public class ComboInput : CoreComponent
         else if (_isCorrect && Time.time >= _endTime + _player.PlayerData.waitCheckInputTime)// // 輸入符合 and 經過些微時間後 => change state
         {
             // Cast
-            _castState.SetSkill(_targetSkill);
+            _castState.SetSkill(_targetSkill);// 設置對應技能
+            Debug.Log("Nice !");
             _player.StateMachine.ChangeState(typeof(PlayerCastState));
+            _inputCheck = false;
+            ResetComboAndAnimation();
         }
         // --- 錯誤 ---
-        else if (!_isCorrect && _currentComboInputs.Count == 4 && !_shouldReset)// 輸入不符合 => _shouldReset = true (只執行一次)
+        else if (!_isCorrect && _currentComboInputs.Count == _comboInputMaxSize && !_shouldReset)// 輸入不符合 => _shouldReset = true (只執行一次)
         {
             _endTime = Time.time;
             _shouldReset = true;

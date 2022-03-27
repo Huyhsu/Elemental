@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "new_ProjectileState", menuName = "Skill/Player Skill/Projectile State")]
 public class ProjectileSkill : Skill
 {
     [SerializeField] private GameObject projectilePrefab;

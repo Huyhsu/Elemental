@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 178520241}
   - component: {fileID: 178520240}
   - component: {fileID: 178520239}
+  - component: {fileID: 178520243}
   m_Layer: 5
   m_Name: Combo UI
   m_TagString: Untagged
@@ -491,6 +492,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &178520243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178520238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62fac5d2a0b70504f8e023282d05be81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  comboInputFirst: {fileID: 506555900}
+  comboInputSecond: {fileID: 1775128626}
+  comboInputThird: {fileID: 100557239}
+  comboInputFourth: {fileID: 300175809}
+  timeSlider: {fileID: 2033062246}
 --- !u!1 &197963491
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,16 +931,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 669686752}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
+  m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_MoveRepeatDelay: 0.5
+  m_MoveRepeatRate: 0.1
+  m_XRTrackingOrigin: {fileID: 0}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018,
+    type: 3}
+  m_DeselectOnBackgroundClick: 1
+  m_PointerBehavior: 0
 --- !u!114 &669686754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1204,7 +1242,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cff3e7cef5a705c429a35e4a174c8c34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skills: []
+  skills:
+  - {fileID: 11400000, guid: 88cf21033d1a6f74bb142a8f6d8c1afe, type: 2}
 --- !u!1 &1384708961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,6 +1388,81 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: fe9283ee-1602-4ffe-9d97-4652f58a0bc0
     m_ActionName: Gameplay/Jump[/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1490989069}
+        m_MethodName: OnCastInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: d585f775-1416-4839-bb11-9e9614bc1e1d
+    m_ActionName: Gameplay/Cast[/Keyboard/h]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1490989069}
+        m_MethodName: OnComboFirstInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 77190a32-edb5-4e3e-9838-b9b8b552129d
+    m_ActionName: Gameplay/ComboFirst[/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1490989069}
+        m_MethodName: OnComboSecondInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5a113aee-d8aa-4cb8-9a7a-9fdbce2b9097
+    m_ActionName: Gameplay/ComboSecond[/Keyboard/i]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1490989069}
+        m_MethodName: OnComboThirdInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 77980a8f-e676-4954-8185-d014e0fa7dfa
+    m_ActionName: Gameplay/ComboThird[/Keyboard/o]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1490989069}
+        m_MethodName: OnComboFourthInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c97ffc03-7f34-470d-a285-031bfded5f22
+    m_ActionName: Gameplay/ComboFourth[/Keyboard/p]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -1736,6 +1850,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: aef89e0395e37c74196fc7d8f26689de, type: 2}
   - {fileID: 11400000, guid: 8c8e7bde0949358428a9c6c5cbf9de8e, type: 2}
   - {fileID: 11400000, guid: 59a8e0e8deb8b204f96dfb7aa9586cff, type: 2}
+  - {fileID: 11400000, guid: 2c139fbe637d3644abeda0c2a111f08b, type: 2}
+  comboUI: {fileID: 178520243}
 --- !u!1 &2033062244
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,6 +1949,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2100440472}
+  - component: {fileID: 2100440473}
   m_Layer: 0
   m_Name: ComboInput
   m_TagString: Untagged
@@ -1854,3 +1971,15 @@ Transform:
   m_Father: {fileID: 1736661943}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2100440473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2100440471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc693ca74168784f855f333d95f3532, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

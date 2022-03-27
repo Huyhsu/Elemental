@@ -13,7 +13,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Initialize(player);
         AnimationBoolName = "idle";
-    }    
+    }
 
     #endregion
     

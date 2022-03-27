@@ -31,6 +31,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ComboFirst",
+                    "type": "Button",
+                    "id": "77190a32-edb5-4e3e-9838-b9b8b552129d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ComboSecond",
+                    "type": "Button",
+                    "id": "5a113aee-d8aa-4cb8-9a7a-9fdbce2b9097",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ComboThird",
+                    "type": "Button",
+                    "id": "77980a8f-e676-4954-8185-d014e0fa7dfa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ComboFourth",
+                    "type": "Button",
+                    "id": "c97ffc03-7f34-470d-a285-031bfded5f22",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -108,6 +144,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cast",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2f50a45c-e042-4efb-958f-2957481938fa",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboFirst",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e10ef365-7fa4-4bcb-9bdd-6c3cdf181b67",
+                    "path": "<Keyboard>/i",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboSecond",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b1850c3b-4bf7-4e0f-997b-3b12b18bacbf",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboThird",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6e9c2297-4471-4068-91ba-3b09a8c27013",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ComboFourth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

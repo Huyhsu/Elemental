@@ -2,8 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "new_CastState", menuName = "State/Player State/Cast State")]
 public class PlayerCastState : PlayerAbilityState
 {
+    
+    public override void Initialize(Player player)
+    {
+        base.Initialize(player);
+        AnimationBoolName = "cast";
+    }
+    
     #region w/ Variables
 
     private float _velocityToSet;
