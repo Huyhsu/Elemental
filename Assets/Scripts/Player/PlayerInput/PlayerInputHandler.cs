@@ -28,7 +28,12 @@ public class PlayerInputHandler : MonoBehaviour
     public int NormalizedYInput { get; private set; }
     public bool JumpInput { get; private set; }
     public bool JumpInputStop { get; private set; }
-
+    public bool CastInput { get; private set; }
+    public bool ComboFirstInput { get; private set; }
+    public bool ComboSecondInput { get; private set; }
+    public bool ComboThirdInput { get; private set; }
+    public bool ComboFourthInput { get; private set; }
+    
     #endregion
 
     #region w/ Unity Callback Functions
@@ -83,6 +88,89 @@ public class PlayerInputHandler : MonoBehaviour
             JumpInput = false;
         }
     }
+
+    #endregion
+    
+    #region w/ Cast
+    // 施法輸入
+    public void OnCastInput(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            CastInput = true;
+        }
+
+        if (context.canceled)
+        {
+            CastInput = false;
+        }
+    }
+
+    public void UseCastInput() => CastInput = false;
+
+    #endregion
+    
+    #region w/ Combo Inputs
+
+    public void OnComboFirstInput(InputAction.CallbackContext context)// First
+    {
+        if (context.started)
+        {
+            ComboFirstInput = true;
+        }
+
+        if (context.canceled)
+        {
+            ComboFirstInput = false;
+        }
+    }
+    
+    public void UseComboFirstInput() => ComboFirstInput = false;
+
+    public void OnComboSecondInput(InputAction.CallbackContext context)// Second
+    {
+        if (context.started)
+        {
+            ComboSecondInput = true;
+        }
+
+        if (context.canceled)
+        {
+            ComboSecondInput = false;
+        }
+    }
+    
+    public void UseComboSecondInput() => ComboSecondInput = false;
+
+    public void OnComboThirdInput(InputAction.CallbackContext context)// Third
+    {
+        if (context.started)
+        {
+            ComboThirdInput = true;
+        }
+
+        if (context.canceled)
+        {
+            ComboThirdInput = false;
+        }
+    }
+    
+    public void UseComboThirdInput() => ComboThirdInput = false;
+
+    public void OnComboFourthInput(InputAction.CallbackContext context)// Fourth
+    {
+        if (context.started)
+        {
+            ComboFourthInput = true;
+        }
+
+        if (context.canceled)
+        {
+            ComboFourthInput = false;
+        }
+    }
+    
+    public void UseComboFourthInput() => ComboFourthInput = false;
 
     #endregion
 }

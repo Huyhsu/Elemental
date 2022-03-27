@@ -15,4 +15,8 @@ public class PlayerData : ScriptableObject
     [Header("In Air State")]
     public float coyoteTime = 0.2f;
     public float variableJumpHeightMultiplier = 0.5f;
+
+    [Header("Combo Input")]
+    public float checkInputTime = 3f;
+    public float waitCheckInputTime = 0.5f;
 }
