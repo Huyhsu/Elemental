@@ -5,8 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new_InAirState", menuName = "State/Player State/InAir State")]
 public class PlayerInAirState : PlayerState
 {
-    // 1 IdleState (GroundedState)
-    // 2 JumpState (AbilityState)
+    // 1 MoveState (GroundedState)
+    // 2 IdleState (GroundedState)
+    // 3 JumpState (AbilityState)
 
     #region w/ Constructor
 
@@ -49,7 +50,6 @@ public class PlayerInAirState : PlayerState
     private bool _isTouchingWall;
     private bool _isTouchingLedge;
 
-    
     #endregion
     
     #region w/ Jump
@@ -107,8 +107,13 @@ public class PlayerInAirState : PlayerState
 
         CheckJumpCoyoteTime();// 郊狼時間
         CheckJumpMultiplier();// 不同跳躍高度
-        
-        if (_isGrounded && Movement.CurrentVelocity.y < 0.01f)
+
+        if (_isGrounded && Movement.CurrentVelocity.y < 0.01f && _xInput != 0)
+        {
+            // Move
+            StateMachine.ChangeState(typeof(PlayerMoveState));
+        }
+        else if (_isGrounded && Movement.CurrentVelocity.y < 0.01f)
         {
             // Idle
             StateMachine.ChangeState(typeof(PlayerIdleState));

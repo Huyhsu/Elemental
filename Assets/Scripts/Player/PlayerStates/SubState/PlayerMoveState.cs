@@ -12,7 +12,7 @@ public class PlayerMoveState : PlayerGroundedState
         base.Initialize(player);
         AnimationBoolName = "move";
     }
-    
+
     #region w/ State Workflow
     
     public override void LogicUpdate()
@@ -21,9 +21,9 @@ public class PlayerMoveState : PlayerGroundedState
         if (IsExitingState) return;
 
         Movement.CheckIfShouldFlip(XInput);
-        Movement.SetVelocityX(XInput * PlayerData.movementVelocity);
+        Movement.SetVelocityAccelerationX(XInput * PlayerData.movementVelocity);
         
-        if (XInput == 0)
+        if (XInput == 0 && Mathf.Abs(Movement.CurrentVelocity.x) <= 0.01f)
         {
             // Idle
             StateMachine.ChangeState(typeof(PlayerIdleState));

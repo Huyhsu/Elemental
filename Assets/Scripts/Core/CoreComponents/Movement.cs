@@ -8,8 +8,12 @@ public class Movement : CoreComponent
     public int FacingDirection { get; private set; }
     public bool CanSetVelocity { get; private set; }
     public Vector2 CurrentVelocity { get; private set; }
+
+    private float _acceleration;
+    private float _deceleration;
     
     private Vector2 _workspace;
+    private Vector2 _temp;
 
     protected override void Awake()
     {
@@ -17,6 +21,8 @@ public class Movement : CoreComponent
         Rigidbody2D = GetComponentInParent<Rigidbody2D>();
         FacingDirection = 1;
         CanSetVelocity = true;
+        _acceleration = 18.0f;
+        _deceleration = 24.0f;
     }
 
     public override void LogicUpdate()
@@ -75,6 +81,83 @@ public class Movement : CoreComponent
         _workspace.Set(CurrentVelocity.x, velocityY);
         SetFinalVelocity();
     }
+
+    public void SetVelocityAccelerationX(float velocityX)// 加速度變化 velocity x
+    {
+        if (velocityX > 0)// 向右移動
+        {
+            if (CurrentVelocity.x < velocityX)// 還沒到達目標速度
+            {
+                _temp.x = CurrentVelocity.x;
+                if (_temp.x < 0)
+                {
+                    _temp.x = 0;
+                }
+                _temp.x += Time.deltaTime * _acceleration;
+                if (_temp.x >= velocityX)
+                {
+                    _temp.x = velocityX;
+                }
+                _workspace.Set(_temp.x, CurrentVelocity.y);
+            }
+            else// 到達目標速度
+            {
+                _workspace.Set(velocityX, CurrentVelocity.y);
+            }
+            SetFinalVelocity();
+        }
+        else if(velocityX < 0)// 向左移動
+        {
+            if (CurrentVelocity.x > velocityX)// 還沒到達目標速度
+            {
+                _temp.x = CurrentVelocity.x;
+                if (_temp.x > 0)
+                {
+                    _temp.x = 0;
+                }
+                _temp.x -= Time.deltaTime * _acceleration;
+                if (_temp.x <= velocityX)
+                {
+                    _temp.x = velocityX;
+                }
+                _workspace.Set(_temp.x, CurrentVelocity.y);
+            }
+            else// 到達目標速度
+            {
+                _workspace.Set(velocityX, CurrentVelocity.y);
+            }
+            SetFinalVelocity();
+        }
+        else if(velocityX == 0)// 無移動
+        {
+            if (CurrentVelocity.x > 0)// 原本向右
+            {
+                _temp.x = CurrentVelocity.x;
+                _temp.x -= Time.deltaTime * _deceleration;
+                if (_temp.x < 0)
+                {
+                    _temp.x = 0;
+                }
+                _workspace.Set(_temp.x, CurrentVelocity.y);
+            }
+            else if (CurrentVelocity.x < 0)// 原本向左
+            {
+                _temp.x = CurrentVelocity.x;
+                _temp.x += Time.deltaTime * _deceleration;
+                if (_temp.x > 0)
+                {
+                    _temp.x = 0;
+                }
+                _workspace.Set(_temp.x, CurrentVelocity.y);
+            }
+            else// 為零
+            {
+                _workspace.Set( 0.0f, CurrentVelocity.y);
+            }
+            SetFinalVelocity();
+        }
+
+    }
     
     private void SetFinalVelocity()
     {
@@ -82,6 +165,6 @@ public class Movement : CoreComponent
         Rigidbody2D.velocity = _workspace;
         CurrentVelocity = _workspace;
     }
-    
+
     #endregion
 }
