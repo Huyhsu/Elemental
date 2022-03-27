@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         // 起始狀態設定
-        // StateMachine.Initialize(typeof(PlayerIdleState));
+        StateMachine.Initialize(typeof(PlayerIdleState));
     }
 
     private void Update()// 更新 core 的 components 與狀態機的 state

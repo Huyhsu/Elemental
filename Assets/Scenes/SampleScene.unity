@@ -147,7 +147,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 77998667}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 65a3a95a4b460ff40acd82ca09b1416b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -448,7 +448,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490989066}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1736661943}
@@ -571,7 +571,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4.5
   m_Material: {fileID: 6200000, guid: 65a3a95a4b460ff40acd82ca09b1416b, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -693,6 +693,7 @@ GameObject:
   - component: {fileID: 2012301866}
   - component: {fileID: 2012301868}
   - component: {fileID: 2012301867}
+  - component: {fileID: 2012301869}
   m_Layer: 0
   m_Name: Player_Wind
   m_TagString: Untagged
@@ -784,3 +785,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2012301869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2012301865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a4f44498cca40448c73e5b440313ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: ae2774af4cfe95f4683fc13f0d74e461, type: 2}
+  states:
+  - {fileID: 11400000, guid: 827418e92fac62f40803e01dfdf97a54, type: 2}
+  - {fileID: 11400000, guid: aef89e0395e37c74196fc7d8f26689de, type: 2}
+  - {fileID: 11400000, guid: 8c8e7bde0949358428a9c6c5cbf9de8e, type: 2}
+  - {fileID: 11400000, guid: 59a8e0e8deb8b204f96dfb7aa9586cff, type: 2}
